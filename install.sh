@@ -15,3 +15,8 @@ cat <<EOF | sudo tee /etc/docker/daemon.json
 "storage-driver": "overlay2"
 }
 EOF
+# issue in node
+kubeadm reset -f
+rm -rf /var/lib/cni
+systemctl restart kubelet
+sudo iptables -F && sudo iptables -t nat -F && sudo iptables -t mangle -F && sudo iptables -X
