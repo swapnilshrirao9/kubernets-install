@@ -15,6 +15,9 @@ cat <<EOF | sudo tee /etc/docker/daemon.json
 "storage-driver": "overlay2"
 }
 EOF
+apt update && apt install -y kubeadm kubectl kubelet
+apt-mark hold kubectl kubeadm kubelet
+
 # issue in node
 kubeadm reset -f
 rm -rf /var/lib/cni
