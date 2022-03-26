@@ -18,9 +18,16 @@ EOF
 apt update && apt install -y kubeadm kubectl kubelet
 apt-mark hold kubectl kubeadm kubelet
 kubeadm token create --print-join-command
-
+mkdir -p $HOME/.kube
+  sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+  sudo chown $(id -u):$(id -g) $HOME/.kube/config
+kubectl apply -f https://github.com/coreos/flannel/raw/master/Documentation/kube-flannel.yml  
 # issue in node
 kubeadm reset -f
 rm -rf /var/lib/cni
+systemctl status kubelet
 systemctl restart kubelet
+systemctl status kubelet
+rm -R /etc/systemd/system/kubelet.service.d 
 sudo iptables -F && sudo iptables -t nat -F && sudo iptables -t mangle -F && sudo iptables -X
+sudo apt daemon-reloadT
