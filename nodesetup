@@ -12,7 +12,7 @@ sudo apt install -y kubeadm kubectl kubelet
 sudo apt-mark hold kubectl kubeadm kubelet
 sudo iptables -F && sudo iptables -t nat -F && sudo iptables -t mangle -F && sudo iptables -X
 sudo apt daemon-reload
-rm -R /etc/systemd/system/kubelet.service.d
+sudo rm -R /etc/systemd/system/kubelet.service.d
 systemctl enable kubelet
 systemctl start kubelet
 # kubeadm join 191.168.0.4:6443 --token o3umxj.0bc2797jh2j3fp8o --discovery-token-ca-cert-hash sha256:d6b1624be2716776c77503603ed5809a96c9b211dfcf519df2db57056c56fd4a
