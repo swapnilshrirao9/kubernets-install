@@ -18,8 +18,8 @@ cat <<EOF | sudo tee /etc/docker/daemon.json
 EOF
 apt update && apt install -y kubeadm kubectl kubelet
 apt-mark hold kubectl kubeadm kubelet
-kubeadm init --control-plane-endpoint="haproxy:6443" --upload-certs --apiserver-advertise-address=localhost --pod-network-cidr=192.168.0.0/16
-kubectl apply -f https://github.com/coreos/flannel/raw/master/Documentation/kube-flannel.yml
+kubeadm init --control-plane-endpoint="haproxy:6443" --upload-certs --apiserver-advertise-address=localhost --pod-network-cidr=192.168.0.0/16 > token
+kubectl --kubeconfig=/etc/kubernetes/admin.conf create -f https://docs.projectcalico.org/v3.15/manifests/calico.yaml
 mkdir -p $HOME/.kube
 sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
