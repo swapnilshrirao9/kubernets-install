@@ -30,4 +30,4 @@ systemctl restart kubelet
 systemctl status kubelet
 rm -R /etc/systemd/system/kubelet.service.d 
 sudo iptables -F && sudo iptables -t nat -F && sudo iptables -t mangle -F && sudo iptables -X
-sudo apt daemon-reloadT
+sudo apt daemon-reload
