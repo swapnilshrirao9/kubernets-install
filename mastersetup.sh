@@ -19,6 +19,7 @@ EOF
 apt update && apt install -y kubeadm kubectl kubelet
 apt-mark hold kubectl kubeadm kubelet
 kubeadm init --pod-network-cidr=10.244.0.0/24
+#kubeadm token create --print-join-command
 kubectl apply -f https://github.com/coreos/flannel/raw/master/Documentation/kube-flannel.yml
 mkdir -p $HOME/.kube
 sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
