@@ -11,7 +11,7 @@ sudo apt update
 sudo apt install -y kubeadm kubectl kubelet
 sudo apt-mark hold kubectl kubeadm kubelet
 sudo iptables -F && sudo iptables -t nat -F && sudo iptables -t mangle -F && sudo iptables -X
-sudo apt daemon-reload
+systemctl daemon-reload
 sudo rm -R /etc/systemd/system/kubelet.service.d
 systemctl enable kubelet
 systemctl start kubelet
