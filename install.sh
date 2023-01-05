@@ -15,6 +15,18 @@ cat <<EOF | sudo tee /etc/docker/daemon.json
 "storage-driver": "overlay2"
 }
 EOF
+wget https://github.com/Mirantis/cri-dockerd/releases/download/v0.2.0/cri-dockerd-v0.2.0-linux-amd64.tar.gz
+sudo mv ./cri-dockerd /usr/local/bin/ 
+cri-dockerd --help
+wget https://raw.githubusercontent.com/Mirantis/cri-dockerd/master/packaging/systemd/cri-docker.service
+wget https://raw.githubusercontent.com/Mirantis/cri-dockerd/master/packaging/systemd/cri-docker.socket
+sudo mv cri-docker.socket cri-docker.service /etc/systemd/system/
+sudo sed -i -e 's,/usr/bin/cri-dockerd,/usr/local/bin/cri-dockerd,' /etc/systemd/system/cri-docker.service
+systemctl daemon-reload
+systemctl enable cri-docker.service
+systemctl enable --now cri-docker.socket
+systemctl status cri-docker.socket
+
 apt update && apt install -y kubeadm kubectl kubelet
 apt-mark hold kubectl kubeadm kubelet
 kubeadm token create --print-join-command
