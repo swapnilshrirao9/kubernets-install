@@ -44,3 +44,8 @@ kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documen
 -------------
 Errors
 ctr plugin ls
+kubeadm certs check-expiration
+kubeadm int phase certs front-proxy-ca
+kubeadm init phase certs ca 
+sudo systemctl daemon-reload
+
