@@ -30,13 +30,17 @@ EOF
 cat <<EOF | sudo tee /etc/sysctl.d/k8s.conf
 net.bridge.bridge-nf-call-ip6tables = 1
 net.bridge.bridge-nf-call-iptables = 1
+net.ipv4.ip_forward =1
 EOF
 sudo sysctl --system
-sudo mkdir -p /etc/containerd
-containerd config default | sudo tee /etc/containerd/config.toml
+#sudo mkdir -p /etc/containerd
+#containerd config default | sudo tee /etc/containerd/config.toml
 sudo systemctl restart containerd
 sudo systemctl status containerd
-exit(0)
+exit(1)
 -----
 sudo kubeadm init --apiserver-advertise-address=$ip-master--pod-network-cidr=10.244.0.0/16 >output.sh
 kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
+-------------
+Errors
+ctr plugin ls
