@@ -48,4 +48,5 @@ kubeadm certs check-expiration
 kubeadm int phase certs front-proxy-ca
 kubeadm init phase certs ca 
 sudo systemctl daemon-reload
-
+containerd-1.6.12-linux-amd64.tar.gz
+sudo apt-get install kubelet=1.24.1-00 kubectl=1.24.1-00 kubeadm=1.24.1-00
