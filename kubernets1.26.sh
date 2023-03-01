@@ -50,12 +50,12 @@ kubeadm init phase certs ca
 sudo systemctl daemon-reload
 containerd-1.6.12-linux-amd64.tar.gz
 wget https://github.com/containerd/containerd/releases/download/v1.6.12/containerd-1.6.12-linux-amd64.tar.gz
-   66  tar xvf containerd-1.6.12-linux-amd64.tar.gz
-   67  systemctl stop containerd
-   68  cd bin
-   69  cp * /usr/bin/
-   70  systemctl start containerd
-   71  containerd --version
-   72  sudo mkdir -p /etc/apt/keyrings
+tar xvf containerd-1.6.12-linux-amd64.tar.gz
+systemctl stop containerd
+cd bin
+cp * /usr/bin/
+systemctl start containerd
+containerd --version
+sudo mkdir -p /etc/apt/keyrings
 
 sudo apt-get install kubelet=1.24.1-00 kubectl=1.24.1-00 kubeadm=1.24.1-00
