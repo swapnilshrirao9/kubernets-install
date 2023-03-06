@@ -39,3 +39,7 @@ sudo systemctl unmask docker
   162  swapoff -a
   163  systemctl start kubelet
   164  systemctl status kubelet
+  cat > /etc/containerd/config.toml <<EOF
+  [plugins."io.containerd.grpc.v1.cri"]
+     systemd_cgroup = true
+  EOF
