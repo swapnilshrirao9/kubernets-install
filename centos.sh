@@ -92,7 +92,7 @@ curl -fsSL https://test.docker.com -o test-docker.sh
 sh test-docker.sh 
 
 yum install -y kubelet-1.26.1-0 kubeadm-1.26.1-0 kubectl-1.26.1-0 --disableexcludes=kubernetes
-sudo kubeadm init --pod-network-cidr=10.244.0.0/16 --upload-certs --kubernetes-version=v1.26.1 –control-plane-endpoint=192.168.56.200 --cri-socket unix:///run/containerd/containerd.sock >>join.sh
+sudo kubeadm init --pod-network-cidr=10.244.0.0/16 --upload-certs --kubernetes-version=v1.26.1 --control-plane-endpoint=192.168.56.200 --cri-socket unix:///run/containerd/containerd.sock >>join.sh
 ------
 
 #mkdir -p $HOME/.kube
