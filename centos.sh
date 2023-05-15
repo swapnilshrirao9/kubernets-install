@@ -1,5 +1,5 @@
 yum update -y
-
+sudo swapoff -a
 ## Install yum-utils, bash completion, git, and more
 yum install yum-utils nfs-utils bash-completion git -y
 
