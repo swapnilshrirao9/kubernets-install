@@ -92,7 +92,15 @@ OS=CentOS_7
 yum install -y kubelet-1.23.4-0 kubeadm-1.23.4-0 kubectl-1.23.4-0 --disableexcludes=kubernetes
 echo Install Docker
 yum install -y docker
-sudo kubeadm init --pod-network-cidr=10.244.0.0/16 --upload-certs --kubernetes-version=v1.26.1 --control-plane-endpoint=192.168.56.200 --cri-socket unix:///run/containerd/containerd.sock >>join.sh
+#sudo kubeadm init --pod-network-cidr=10.244.0.0/16 --upload-certs --kubernetes-version=v1.26.1 --control-plane-endpoint=192.168.56.200 --cri-socket unix:///run/containerd/containerd.sock >>join.sh
+ kubeadm init --pod-network-cidr=192.168.0.0/16 --apiserver-advertise-address=182.168.0.100 --control-plane-endpoint=182.168.0.100
+mkdir -p $HOME/.kube
+sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+sudo chown $(id -u):$(id -g) $HOME/.kube/config 
+echo install FIRST Calico.yaml
+kubectl apply -f calico.yaml
+kubeadm token create --print-join-command
+
 ------
 
 #mkdir -p $HOME/.kube
