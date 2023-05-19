@@ -87,11 +87,11 @@ OS=CentOS_7
 #set CRI-O
 #VERSION=1.20
 
-echo Install Docker
-curl -fsSL https://test.docker.com -o test-docker.sh
-sh test-docker.sh 
 
-yum install -y kubelet-1.26.1-0 kubeadm-1.26.1-0 kubectl-1.26.1-0 --disableexcludes=kubernetes
+
+yum install -y kubelet-1.23.4-0 kubeadm-1.23.4-0 kubectl-1.23.4-0 --disableexcludes=kubernetes
+echo Install Docker
+yum install -y docker
 sudo kubeadm init --pod-network-cidr=10.244.0.0/16 --upload-certs --kubernetes-version=v1.26.1 --control-plane-endpoint=192.168.56.200 --cri-socket unix:///run/containerd/containerd.sock >>join.sh
 ------
 
