@@ -98,7 +98,7 @@ mkdir -p $HOME/.kube
 sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config 
 echo install FIRST Calico.yaml
-kubectl apply -f calico.yaml
+kubectl apply -f https://github.com/swapnilshrirao9/kubernets-install/blob/install-kubernets/flannel.yaml
 kubeadm token create --print-join-command
 
 ------
